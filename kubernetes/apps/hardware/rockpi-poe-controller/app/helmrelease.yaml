@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: ghcr.io/tolkonepiu/rockpi-poe-controller
-              tag: v0.3.1
+              tag: v0.3.5
             env:
               POE_LV0: 40
               POE_LV1: 45
