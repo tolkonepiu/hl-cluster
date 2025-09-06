@@ -11,7 +11,7 @@ spec:
     operation: copy
   url: oci://ghcr.io/victoriametrics/helm-charts/victoria-metrics-k8s-stack
   ref:
-    tag: 0.59.5
+    tag: 0.59.5@sha256:a3555a44e52fc66de8ce4fdebe8483337dfac2b88e76947c9a1e1353c38564e9
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2

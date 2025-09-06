@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/tolkonepiu/rockpi-poe-controller
-              tag: v0.3.6
+              tag: v0.3.6@sha256:9bb7aed9d0760f460d6937974447e09e3d513ea8a3e36744b573f3ce910efa82
             ports:
               - name: http
                 containerPort: &port 8000
