@@ -17,7 +17,7 @@ releases:
     namespace: kube-system
     atomic: true
     chart: kube-vip/kube-vip
-    version: 0.9.3
+    version: 0.9.5
     values: ["../kubernetes/apps/kube-system/kube-vip/app/helm/values.yaml"]
 
   - name: cilium
