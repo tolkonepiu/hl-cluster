@@ -64,7 +64,7 @@ spec:
           app:
             image:
               repository: ghcr.io/zeroclaw-labs/zeroclaw
-              tag: v0.5.0
+              tag: v0.5.1
             args:
               - daemon
             envFrom:
