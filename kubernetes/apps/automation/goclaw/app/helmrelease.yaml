@@ -124,7 +124,7 @@ spec:
           app:
             image:
               repository: ghcr.io/nextlevelbuilder/goclaw-web
-              tag: v1.61.1
+              tag: v1.74.1
             probes:
               liveness:
                 enabled: true
