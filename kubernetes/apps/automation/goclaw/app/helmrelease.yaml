@@ -122,7 +122,7 @@ spec:
           app:
             image:
               repository: ghcr.io/nextlevelbuilder/goclaw
-              tag: v1.74.1-full
+              tag: v1.75.0-full
             envFrom:
               - secretRef:
                   name: goclaw-secret
@@ -191,7 +191,7 @@ spec:
           app:
             image:
               repository: ghcr.io/nextlevelbuilder/goclaw-web
-              tag: v1.74.1
+              tag: v1.75.0
             probes:
               liveness:
                 enabled: true
