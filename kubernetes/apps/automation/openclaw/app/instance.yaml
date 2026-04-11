@@ -81,7 +81,7 @@ spec:
   skills:
     - "@digitallyborn/pushover-notify"
   plugins:
-    - "@honcho-ai/openclaw-honcho@1.2.2"
+    - "@honcho-ai/openclaw-honcho@1.3.2"
   workspace:
     configMapRef:
       name: openclaw-context-config
