@@ -32,7 +32,12 @@ spec:
       retries: 3
   values:
     fullnameOverride: kured
+    extraEnvVars:
+      - name: KURED_NOTIFY_URL
+        valueFrom:
+          secretKeyRef:
+            name: kured-secret
+            key: KURED_NOTIFY_URL
     configuration:
       lockTtl: 10m
       lockReleaseDelay: 5m
-      notifyUrl: "${KURED_NOTIFY_URL}"
