@@ -68,17 +68,17 @@ spec:
         enabled: false
   probes:
     startup:
-      initialDelaySeconds: 30
-      timeoutSeconds: 10
-      failureThreshold: 90
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 24
     liveness:
-      initialDelaySeconds: 60
-      timeoutSeconds: 10
-      failureThreshold: 5
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 3
     readiness:
-      initialDelaySeconds: 30
-      timeoutSeconds: 10
-      failureThreshold: 5
+      initialDelaySeconds: 5
+      timeoutSeconds: 5
+      failureThreshold: 3
   selfConfigure:
     enabled: false
   gateway:
