@@ -129,7 +129,7 @@ spec:
           - name: heartbeat
             webhook_configs:
               - url_secret:
-                  name: &secret cluster-secrets
+                  name: &secret victoria-metrics
                   key: ALERTMANAGER_HEARTBEAT_URL
           - name: pushover
             pushover_configs:
@@ -166,7 +166,7 @@ spec:
                   name: *secret
                   key: PUSHOVER_ALERTMANAGER_TOKEN
                 user_key:
-                  name: *secret
+                  name: cluster-secrets
                   key: PUSHOVER_USER_KEY
                 url_title: View in Alertmanager
 
