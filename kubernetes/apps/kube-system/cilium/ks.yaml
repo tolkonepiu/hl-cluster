@@ -15,10 +15,6 @@ spec:
       name: sops-age
   interval: 1h
   path: ./kubernetes/apps/kube-system/cilium/app
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -48,10 +44,6 @@ spec:
       namespace: cert-manager
   interval: 1h
   path: ./kubernetes/apps/kube-system/cilium/gateway
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository

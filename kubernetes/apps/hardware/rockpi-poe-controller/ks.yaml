@@ -19,10 +19,6 @@ spec:
       name: sops-age
   interval: 1h
   path: ./kubernetes/apps/hardware/rockpi-poe-controller/app
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   prune: true
   retryInterval: 2m
   sourceRef:
