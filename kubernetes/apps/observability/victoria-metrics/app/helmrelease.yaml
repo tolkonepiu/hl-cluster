@@ -51,7 +51,7 @@ spec:
       spec:
         retentionPeriod: "7d"
         extraArgs:
-          memory.allowedPercent: "20"
+          memory.allowedPercent: "40"
         storage:
           accessModes:
             - ReadWriteOnce
