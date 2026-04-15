@@ -241,19 +241,35 @@ spec:
               workspaceId: openclaw
           lossless-claw:
             enabled: true
+            subagent:
+              allowModelOverride: true
+              allowedModels:
+                - openai/gpt-5.4-mini
             config:
-              contextThreshold: 0.8
-              maxAssemblyTokenBudget: 20000
-              freshTailCount: 32
-              freshTailMaxTokens: 8000
-              leafChunkTokens: 30000
-              incrementalMaxDepth: 0
-              leafTargetTokens: 1200
-              condensedTargetTokens: 1400
-              maxExpandTokens: 1500
+              contextThreshold: 0.75
+              freshTailCount: 64
+              newSessionRetainDepth: 2
+              leafMinFanout: 8
+              condensedMinFanout: 4
+              condensedMinFanoutHard: 2
+              incrementalMaxDepth: 1
+              leafChunkTokens: 20000
+              leafTargetTokens: 2400
+              condensedTargetTokens: 2000
+              maxExpandTokens: 4000
+              largeFileThresholdTokens: 25000
               summaryModel: openai/gpt-5.4-mini
               expansionModel: openai/gpt-5.4-mini
-              pruneHeartbeatOk: true
+              delegationTimeoutMs: 300000
+              summaryTimeoutMs: 60000
+              cacheAwareCompaction:
+                enabled: true
+              dynamicLeafChunkTokens:
+                enabled: true
+                max: 40000
+              transcriptGcEnabled: false
+              proactiveThresholdCompactionMode: deferred
+              pruneHeartbeatOk: false
               ignoreSessionPatterns:
                 - agent:*:cron:**
               statelessSessionPatterns:
@@ -272,6 +288,9 @@ spec:
           keepLines: 2000
       session:
         scope: per-sender
+        reset:
+          mode: idle
+          idleMinutes: 10080 # 7 days
         maintenance:
           mode: "enforce"
           pruneAfter: "30d"
