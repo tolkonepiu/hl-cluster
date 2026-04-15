@@ -89,7 +89,7 @@ spec:
     - "@digitallyborn/pushover-notify"
   plugins:
     - "@honcho-ai/openclaw-honcho@1.3.2"
-    - "@martian-engineering/lossless-claw@0.9.0"
+    - "@martian-engineering/lossless-claw@0.9.1"
   workspace:
     configMapRef:
       name: openclaw-context-config
