@@ -10,6 +10,7 @@
     "github>tolkonepiu/hl-cluster//.renovate/labels.json5",
     "github>tolkonepiu/hl-cluster//.renovate/semanticCommits.json5",
     "github>tolkonepiu/hl-cluster//.renovate/customVersioning.json5",
+    "github>tolkonepiu/hl-cluster//.renovate/versionExclusions.json5",
     ":dependencyDashboard",
     ":disableRateLimiting",
     ":semanticCommits",
