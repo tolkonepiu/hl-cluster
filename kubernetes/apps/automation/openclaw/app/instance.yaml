@@ -73,12 +73,12 @@ spec:
       failureThreshold: 24
     liveness:
       initialDelaySeconds: 10
-      timeoutSeconds: 5
-      failureThreshold: 3
+      timeoutSeconds: 10
+      failureThreshold: 6
     readiness:
       initialDelaySeconds: 5
-      timeoutSeconds: 5
-      failureThreshold: 3
+      timeoutSeconds: 10
+      failureThreshold: 6
   selfConfigure:
     enabled: false
   gateway:
