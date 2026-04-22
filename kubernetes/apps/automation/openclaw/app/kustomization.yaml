@@ -20,6 +20,6 @@ configMapGenerator:
       - USER.md=./resources/context/USER.md
   - name: openclaw-transforms-config
     files:
-      - alertmanager.js=./resources/transforms/alertmanager.js
+      - alertmanager.mjs=./resources/transforms/alertmanager.mjs
 generatorOptions:
   disableNameSuffixHash: true
