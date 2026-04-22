@@ -1,47 +1,51 @@
 export default async function transform(input) {
   const payload = input?.payload ?? {};
-
   const alerts = Array.isArray(payload?.alerts) ? payload.alerts : [];
-  const firing = alerts.filter((alert) => alert.status === "firing");
-  const resolved = alerts.filter((alert) => alert.status === "resolved");
-  const commonLabels = payload?.commonLabels || {};
 
-  const clip = (s, n = 400) =>
+  const status = String(payload?.status ?? "unknown").toUpperCase();
+  const alertname = payload?.commonLabels?.alertname ?? "Alertmanager";
+  const firingCount = alerts.filter((a) => a.status === "firing").length;
+
+  const title =
+    status === "FIRING"
+      ? `**[${status}:${firingCount}] ${alertname}**`
+      : `**[${status}] ${alertname}**`;
+
+  const clip = (s, n = 1200) =>
     typeof s === "string" && s.length > n ? `${s.slice(0, n)}…` : s;
 
-  const lines = [
-    "Alertmanager webhook received.",
-    "",
-    `Status: ${payload?.status ?? "unknown"}`,
-    `Receiver: ${payload?.receiver ?? "-"}`,
-    `Firing: ${firing.length}, Resolved: ${resolved.length}`,
-    `Common alertname: ${commonLabels.alertname ?? "-"}`,
-    `Common severity: ${commonLabels.severity ?? "-"}`,
-    "",
-  ];
-
-  for (const alert of alerts.slice(0, 10)) {
-    const labels = alert.labels || {};
-    const annotations = alert.annotations || {};
-    lines.push(
-      `- [${alert.status}] ${labels.alertname ?? "unknown"} ` +
-        `(severity=${labels.severity ?? "-"}, namespace=${labels.namespace ?? "-"})`,
+  const pickAlertText = (alert) => {
+    const annotations = alert?.annotations || {};
+    return (
+      annotations.description ||
+      annotations.summary ||
+      annotations.message ||
+      "Alert description not available"
     );
-    if (annotations.summary) {
-      lines.push(`  summary: ${clip(annotations.summary, 200)}`);
-    }
-    if (annotations.description) {
-      lines.push(`  description: ${clip(annotations.description, 400)}`);
-    }
-  }
+  };
 
-  if (alerts.length > 10) {
-    lines.push("", `...and ${alerts.length - 10} more alerts`);
-  }
+  const formatLabels = (labels) => {
+    const entries = Object.entries(labels || {})
+      .filter(
+        ([, value]) => value !== undefined && value !== null && value !== "",
+      )
+      .sort(([a], [b]) => a.localeCompare(b));
+
+    if (entries.length === 0) return "";
+
+    return entries.map(([key, value]) => `- **${key}:** ${value}`).join("\n");
+  };
+
+  const blocks = alerts.map((alert) => {
+    const text = clip(pickAlertText(alert), 1200);
+    const labelsText = formatLabels(alert?.labels);
+
+    return labelsText ? `${text}\n\n${labelsText}` : text;
+  });
 
   return {
     name: "Alertmanager",
     sessionKey: "hook:alertmanager",
-    message: lines.join("\n"),
+    message: [title, "", ...blocks].join("\n\n"),
   };
 }
