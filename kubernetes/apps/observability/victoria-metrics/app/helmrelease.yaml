@@ -131,7 +131,7 @@ spec:
               - url_secret:
                   name: &secret victoria-metrics
                   key: ALERTMANAGER_HEARTBEAT_URL
-          - name: pushover
+          - name: notifications
             pushover_configs:
               - html: true
                 message: |-
@@ -169,7 +169,6 @@ spec:
                   name: cluster-secrets
                   key: PUSHOVER_USER_KEY
                 url_title: View in Alertmanager
-          - name: openclaw
             webhook_configs:
               - url: http://openclaw.automation.svc.cluster.local:18789/hooks/alertmanager
                 send_resolved: true
