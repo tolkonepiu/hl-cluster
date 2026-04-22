@@ -21,6 +21,11 @@ spec:
       value: "1"
     - name: OPENCLAW_LOAD_SHELL_ENV
       value: "1"
+    - name: OPENCLAW_HOOKS_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cluster-secrets
+          key: OPENCLAW_HOOKS_TOKEN
     - name: PUSHOVER_USER_KEY
       valueFrom:
         secretKeyRef:
@@ -91,6 +96,14 @@ spec:
   workspace:
     configMapRef:
       name: openclaw-context-config
+  extraVolumes:
+    - name: hooks-transforms
+      configMap:
+        name: openclaw-transforms-config
+  extraVolumeMounts:
+    - name: hooks-transforms
+      mountPath: /home/openclaw/.openclaw/hooks/transforms
+      readOnly: true
   config:
     mergeMode: overwrite
     raw:
@@ -331,3 +344,16 @@ spec:
             transport: streamable-http
             url: http://flux-operator-mcp.automation.svc.cluster.local:9090/mcp
             connectionTimeoutMs: 30000
+      hooks:
+        enabled: true
+        token: ${OPENCLAW_HOOKS_TOKEN}
+        path: /hooks
+        transformsDir: /home/openclaw/.openclaw/hooks/transforms
+        mappings:
+          - id: alertmanager
+            match:
+              path: alertmanager
+            action: agent
+            wakeMode: now
+            transform:
+              module: alertmanager.js
