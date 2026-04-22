@@ -1,8 +1,10 @@
-export default async function transform(payload) {
+export default async function transform(input) {
+  const payload = input?.payload ?? {};
+
   const alerts = Array.isArray(payload?.alerts) ? payload.alerts : [];
-  const firing = alerts.filter((a) => a.status === "firing");
-  const resolved = alerts.filter((a) => a.status === "resolved");
-  const common = payload?.commonLabels || {};
+  const firing = alerts.filter((alert) => alert.status === "firing");
+  const resolved = alerts.filter((alert) => alert.status === "resolved");
+  const commonLabels = payload?.commonLabels || {};
 
   const clip = (s, n = 400) =>
     typeof s === "string" && s.length > n ? `${s.slice(0, n)}…` : s;
@@ -13,21 +15,24 @@ export default async function transform(payload) {
     `Receiver: ${payload?.receiver ?? "-"}`,
     `Group key: ${payload?.groupKey ?? "-"}`,
     `Firing: ${firing.length}, Resolved: ${resolved.length}`,
-    `Common alertname: ${common.alertname ?? "-"}`,
-    `Common severity: ${common.severity ?? "-"}`,
+    `Common alertname: ${commonLabels.alertname ?? "-"}`,
+    `Common severity: ${commonLabels.severity ?? "-"}`,
     "",
   ];
 
-  for (const a of alerts.slice(0, 10)) {
-    const labels = a.labels || {};
-    const ann = a.annotations || {};
+  for (const alert of alerts.slice(0, 10)) {
+    const labels = alert.labels || {};
+    const annotations = alert.annotations || {};
     lines.push(
-      `- [${a.status}] ${labels.alertname ?? "unknown"} ` +
+      `- [${alert.status}] ${labels.alertname ?? "unknown"} ` +
         `(severity=${labels.severity ?? "-"}, namespace=${labels.namespace ?? "-"})`,
     );
-    if (ann.summary) lines.push(`  summary: ${clip(ann.summary, 200)}`);
-    if (ann.description)
-      lines.push(`  description: ${clip(ann.description, 400)}`);
+    if (annotations.summary) {
+      lines.push(`  summary: ${clip(annotations.summary, 200)}`);
+    }
+    if (annotations.description) {
+      lines.push(`  description: ${clip(annotations.description, 400)}`);
+    }
   }
 
   if (alerts.length > 10) {
