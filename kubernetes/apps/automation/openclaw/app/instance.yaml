@@ -348,6 +348,10 @@ spec:
         enabled: true
         token: ${OPENCLAW_HOOKS_TOKEN}
         path: /hooks
+        allowRequestSessionKey: true
+        allowedSessionKeyPrefixes:
+          - "hook:"
+          - "hook:alertmanager:"
         transformsDir: /home/openclaw/.openclaw/hooks/transforms
         mappings:
           - id: alertmanager
