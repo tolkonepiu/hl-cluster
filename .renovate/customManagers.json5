@@ -14,9 +14,9 @@
       customType: "regex",
       description: "Process annotated dependencies",
       managerFilePatterns: [
-        "/\\.env(?:\\.j2)?$/",
-        "/\\.sh(?:\\.j2)?$/",
-        "/\\.yaml(?:\\.j2)?$/",
+        "/\\.env$/",
+        "/\\.sh$/",
+        "/\\.yaml$/",
       ],
       matchStrings: [
         // # renovate: datasource=github-releases depName=k3s-io/k3s
@@ -31,6 +31,24 @@
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)",
       ],
       datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+    },
+    {
+      customType: "regex",
+      description: "Process annotated OpenClaw skills pinned by Git tags",
+      managerFilePatterns: ["/\\.yaml$/"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>github-tags|github-releases) depName=(?<depName>\\S+)\\n\\s*-\\s*\"pack:[^\"]+@(?<currentValue>[^\"]+)\"",
+      ],
+      extractVersionTemplate: "^v?(?<version>.*)$",
+    },
+    {
+      customType: "regex",
+      description: "Process annotated OpenClaw skills pinned by commit hash",
+      managerFilePatterns: ["/\\.yaml$/"],
+      matchStrings: [
+        "# renovate: datasource=github-digest depName=(?<depName>\\S+)\\n\\s*-\\s*\"pack:[^\"]+@(?<currentDigest>[0-9a-f]{7,40})\"",
+      ],
+      versioningTemplate: "loose",
     },
   ],
 }
