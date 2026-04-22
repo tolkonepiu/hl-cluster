@@ -169,6 +169,7 @@ spec:
                   name: cluster-secrets
                   key: PUSHOVER_USER_KEY
                 url_title: View in Alertmanager
+          - name: openclaw
             webhook_configs:
               - url: http://openclaw.automation.svc.cluster.local:18789/hooks/alertmanager
                 send_resolved: true

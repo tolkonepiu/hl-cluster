@@ -11,9 +11,9 @@ export default async function transform(input) {
 
   const lines = [
     "Alertmanager webhook received.",
+    "",
     `Status: ${payload?.status ?? "unknown"}`,
     `Receiver: ${payload?.receiver ?? "-"}`,
-    `Group key: ${payload?.groupKey ?? "-"}`,
     `Firing: ${firing.length}, Resolved: ${resolved.length}`,
     `Common alertname: ${commonLabels.alertname ?? "-"}`,
     `Common severity: ${commonLabels.severity ?? "-"}`,
@@ -41,7 +41,7 @@ export default async function transform(input) {
 
   return {
     name: "Alertmanager",
-    sessionKey: `hook:alertmanager:${payload?.groupKey ?? payload?.receiver ?? "default"}`,
+    sessionKey: "hook:alertmanager",
     message: lines.join("\n"),
   };
 }
