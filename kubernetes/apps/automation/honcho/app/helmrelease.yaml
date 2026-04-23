@@ -22,7 +22,7 @@ spec:
         strategy: RollingUpdate
         annotations: &annotations
           reloader.stakater.com/auto: "true"
-        initContainers:
+        initContainers: &initContainers
           01-init-db:
             image:
               repository: ghcr.io/home-operations/postgres-init
@@ -89,19 +89,23 @@ spec:
               - -lc
               - psql -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS
                 vector;"
-        containers:
-          app:
+          03-database-migration:
             image: &image
               repository: ghcr.io/plastic-labs/honcho
               tag: v3.0.6
-            command:
-              - sh
-              - /app/docker/entrypoint.sh
             envFrom: &envFrom
               - secretRef:
                   name: honcho-secret
             env: &env
               DB_CONNECTION_URI: postgresql+psycopg://$(HONCHO_DB_USER):$(HONCHO_DB_PASS)@tolstoy-rw.database.svc.cluster.local:5432/$(HONCHO_DBNAME)
+            command:
+              - python
+              - scripts/provision_db.py
+        containers:
+          app:
+            image: *image
+            envFrom: *envFrom
+            env: *env
             probes:
               liveness: &probes
                 enabled: true
@@ -155,19 +159,7 @@ spec:
         strategy: RollingUpdate
         replicas: 1
         annotations: *annotations
-        initContainers:
-          01-wait-honcho:
-            image:
-              repository: curlimages/curl
-              tag: 8.19.0
-            command:
-              - sh
-              - -ec
-              - |
-                until curl -fsS http://honcho:8000/health; do
-                  echo "waiting for honcho migrations/startup"
-                  sleep 2
-                done
+        initContainers: *initContainers
         containers:
           app:
             image: *image
