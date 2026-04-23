@@ -360,3 +360,4 @@ spec:
             wakeMode: now
             transform:
               module: alertmanager.mjs
+            allowUnsafeExternalContent: true
