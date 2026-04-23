@@ -208,7 +208,7 @@ spec:
     serviceMonitor:
       app:
         enabled: true
-        serviceName: *app
+        serviceName: honcho-app
         endpoints:
           - port: http
             scheme: http
@@ -217,7 +217,7 @@ spec:
             scrapeTimeout: 10s
       deriver:
         enabled: true
-        serviceName: deriver
+        serviceName: honcho-deriver
         endpoints:
           - port: metrics
             scheme: http
