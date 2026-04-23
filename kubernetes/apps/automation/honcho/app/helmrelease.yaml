@@ -179,6 +179,31 @@ spec:
         ports:
           http:
             port: *port
+      deriver:
+        type: ClusterIP
+        controller: deriver
+        ports:
+          metrics:
+            port: 9090
+    serviceMonitor:
+      app:
+        enabled: true
+        serviceName: *app
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
+      deriver:
+        enabled: true
+        serviceName: deriver
+        endpoints:
+          - port: metrics
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
     persistence:
       config-file:
         type: configMap
