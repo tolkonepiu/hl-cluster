@@ -87,7 +87,8 @@ spec:
             command:
               - bash
               - -lc
-              - psql -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector;"
+              - psql -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS
+                vector;"
         containers:
           app:
             image: &image
@@ -137,6 +138,19 @@ spec:
                 memory: 256Mi
               limits:
                 memory: 512Mi
+      honcho-dashboard:
+        strategy: RollingUpdate
+        annotations: *annotations
+        containers:
+          app:
+            image:
+              repository: ghcr.io/tolkonepiu/honcho-dashboard
+              tag: v0.2.0
+            env:
+              - name: HONCHO_BASE_URL
+                value: http://honcho.automation.svc.cluster.local:8000
+            securityContext: *securityContext
+            resources: *resources
       deriver:
         strategy: RollingUpdate
         replicas: 1
@@ -179,6 +193,12 @@ spec:
         ports:
           http:
             port: *port
+      dashboard:
+        type: ClusterIP
+        controller: honcho-dashboard
+        ports:
+          http:
+            port: 3000
       deriver:
         type: ClusterIP
         controller: deriver
@@ -221,6 +241,13 @@ spec:
             namespace: kube-system
             sectionName: https
         rules:
-          - backendRefs:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /v3
+            backendRefs:
               - identifier: app
                 port: *port
+          - backendRefs:
+              - identifier: dashboard
+                port: 3000
