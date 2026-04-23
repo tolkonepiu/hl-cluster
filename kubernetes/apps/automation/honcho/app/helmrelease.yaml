@@ -148,7 +148,7 @@ spec:
               tag: v0.2.0
             env:
               - name: HONCHO_BASE_URL
-                value: http://honcho.automation.svc.cluster.local:8000
+                value: http://honcho-app.automation.svc.cluster.local:8000
             securityContext: *securityContext
             resources: *resources
       deriver:

@@ -248,7 +248,7 @@ spec:
           openclaw-honcho:
             enabled: true
             config:
-              baseUrl: http://honcho.automation.svc.cluster.local:8000
+              baseUrl: http://honcho-app.automation.svc.cluster.local:8000
               workspaceId: openclaw
           lossless-claw:
             enabled: true
