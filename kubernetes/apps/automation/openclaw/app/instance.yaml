@@ -69,15 +69,18 @@ spec:
         enabled: false
   probes:
     startup:
-      initialDelaySeconds: 10
+      initialDelaySeconds: 0
+      periodSeconds: 10
       timeoutSeconds: 5
-      failureThreshold: 24
+      failureThreshold: 60
     liveness:
-      initialDelaySeconds: 10
+      initialDelaySeconds: 0
+      periodSeconds: 30
       timeoutSeconds: 10
-      failureThreshold: 6
+      failureThreshold: 5
     readiness:
-      initialDelaySeconds: 5
+      initialDelaySeconds: 0
+      periodSeconds: 10
       timeoutSeconds: 10
       failureThreshold: 6
   selfConfigure:
