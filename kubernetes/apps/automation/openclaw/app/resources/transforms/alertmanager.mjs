@@ -11,7 +11,7 @@ export default async function transform(input) {
       ? `**[${status}:${firingCount}] ${alertname}**`
       : `**[${status}] ${alertname}**`;
 
-  const clip = (s, n = 1200) =>
+  const clip = (s, n = 800) =>
     typeof s === "string" && s.length > n ? `${s.slice(0, n)}…` : s;
 
   const pickAlertText = (alert) => {
@@ -37,15 +37,12 @@ export default async function transform(input) {
   };
 
   const blocks = alerts.map((alert) => {
-    const text = clip(pickAlertText(alert), 1200);
+    const text = clip(pickAlertText(alert), 800);
     const labelsText = formatLabels(alert?.labels);
-
-    return labelsText ? `${text}\n\n${labelsText}` : text;
+    return labelsText ? `${text}\n${labelsText}` : text;
   });
 
   return {
-    name: "Alertmanager",
-    sessionKey: "hook:alertmanager",
-    message: [title, "", ...blocks].join("\n\n"),
+    text: [title, ...blocks].join("\n\n"),
   };
 }

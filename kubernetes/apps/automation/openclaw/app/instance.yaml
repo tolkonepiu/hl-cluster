@@ -355,15 +355,13 @@ spec:
         enabled: true
         token: ${OPENCLAW_HOOKS_TOKEN}
         path: /hooks
-        allowRequestSessionKey: true
-        allowedSessionKeyPrefixes:
-          - "hook:"
+        allowRequestSessionKey: false
         transformsDir: /home/openclaw/.openclaw/hooks/transforms
         mappings:
           - id: alertmanager
             match:
               path: alertmanager
-            action: agent
+            action: wake
             wakeMode: now
             transform:
               module: alertmanager.mjs
