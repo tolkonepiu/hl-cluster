@@ -253,6 +253,10 @@ spec:
             config:
               baseUrl: http://honcho-app.automation.svc.cluster.local:8000
               workspaceId: openclaw
+              noisePatterns:
+                - "/^Read HEARTBEAT\\.md if it exists/s"
+                - "/^You are an autonomous LCM retrieval navigator\\./s"
+                - "/^\\{\"answer\":/s"
           lossless-claw:
             enabled: true
             subagent:
