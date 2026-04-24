@@ -22,6 +22,21 @@ spec:
         strategy: RollingUpdate
         annotations: &annotations
           reloader.stakater.com/auto: "true"
+        pod:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/controller
+                        operator: In
+                        values:
+                          - deriver
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - "{{ .Release.Name }}"
+                  topologyKey: kubernetes.io/hostname
         initContainers: &initContainers
           01-init-db:
             image:
@@ -159,6 +174,21 @@ spec:
         strategy: RollingUpdate
         replicas: 1
         annotations: *annotations
+        pod:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/controller
+                        operator: In
+                        values:
+                          - honcho
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - "{{ .Release.Name }}"
+                  topologyKey: kubernetes.io/hostname
         initContainers: *initContainers
         containers:
           app:
