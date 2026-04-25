@@ -25,7 +25,7 @@ TRACING = false
 
 # Authentication settings
 [auth]
-USE_AUTH = false
+USE_AUTH = true
 
 # Sentry settings
 [sentry]
