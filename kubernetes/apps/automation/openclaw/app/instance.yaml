@@ -31,11 +31,6 @@ spec:
         secretKeyRef:
           name: cluster-secrets
           key: PUSHOVER_USER_KEY
-    - name: HONCHO_API_KEY
-      valueFrom:
-        secretKeyRef:
-          name: honcho-secret
-          key: AUTH_JWT_SECRET
     - name: NODE_OPTIONS
       value: "--max-old-space-size=512"
   storage:

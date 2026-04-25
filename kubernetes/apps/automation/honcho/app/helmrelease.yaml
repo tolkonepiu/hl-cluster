@@ -168,11 +168,6 @@ spec:
             env:
               - name: HONCHO_BASE_URL
                 value: http://honcho-app.automation.svc.cluster.local:8000
-              - name: HONCHO_API_KEY
-                valueFrom:
-                  secretKeyRef:
-                    name: honcho-secret
-                    key: AUTH_JWT_SECRET
             securityContext: *securityContext
             resources: *resources
       deriver:
