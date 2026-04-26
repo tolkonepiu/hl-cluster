@@ -252,6 +252,8 @@ spec:
         entries:
           openclaw-honcho:
             enabled: true
+            hooks:
+              allowConversationAccess: true
             config:
               baseUrl: http://honcho-app.automation.svc.cluster.local:8000
               workspaceId: openclaw
