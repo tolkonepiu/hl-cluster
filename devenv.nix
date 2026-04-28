@@ -54,10 +54,7 @@ in {
     kubeconform
     kubectl
     kubefetch
-    # Temporary: upstream kubernetes-helm 3.20.2 tests are failing in nixpkgs.
-    (kubernetes-helm.overrideAttrs (_: {
-      doCheck = false;
-    }))
+    kubernetes-helm
     kustomize
     moreutils
     sops
