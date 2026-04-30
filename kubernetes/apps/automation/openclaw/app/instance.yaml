@@ -94,7 +94,7 @@ spec:
     # renovate: datasource=github-tags depName=fluxcd/agent-skills
     - "pack:fluxcd/agent-skills/skills/gitops-cluster-debug@v0.0.3"
   plugins:
-    - "@honcho-ai/openclaw-honcho@1.4.0"
+    - "@honcho-ai/openclaw-honcho@1.4.1"
     - "@martian-engineering/lossless-claw@0.9.2"
   workspace:
     bootstrap:
