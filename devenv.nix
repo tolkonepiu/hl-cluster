@@ -73,7 +73,6 @@ in {
     deadnix.enable = true;
     shellcheck.enable = true;
     statix.enable = true;
-    end-of-file-fixer.enable = true;
     shfmt.enable = true;
     trufflehog.enable = true;
     yamllint.enable = true;
