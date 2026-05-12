@@ -197,10 +197,6 @@ spec:
             provider: exa
       plugins:
         enabled: true
-        load:
-          paths:
-            - /home/openclaw/.openclaw/node_modules/@honcho-ai/openclaw-honcho
-            - /home/openclaw/.openclaw/node_modules/@martian-engineering/lossless-claw
         allow:
           - exa
           - lossless-claw
