@@ -73,6 +73,16 @@ spec:
       enabled: true
       replicaCount: 1
       spec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/component: monitoring
+                    app.kubernetes.io/instance: stack
+                    app.kubernetes.io/name: vmsingle
+                    managed-by: vm-operator
+                topologyKey: kubernetes.io/hostname
         extraArgs:
           promscrape.maxScrapeSize: 50MiB
           promscrape.streamParse: "true"
