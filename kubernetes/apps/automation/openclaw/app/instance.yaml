@@ -93,6 +93,8 @@ spec:
     - "@digitallyborn/pushover-notify"
     # renovate: datasource=github-tags depName=fluxcd/agent-skills
     - "pack:fluxcd/agent-skills/skills/gitops-cluster-debug@v0.0.3"
+    # renovate: datasource=github-tags depName=JuliusBrussee/caveman
+    - "pack:JuliusBrussee/caveman/skills/caveman@v1.8.2"
   plugins:
     - "@honcho-ai/openclaw-honcho@1.4.1"
     - "@martian-engineering/lossless-claw@0.9.4"
