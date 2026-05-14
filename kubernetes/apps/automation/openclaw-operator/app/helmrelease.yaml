@@ -24,6 +24,21 @@ spec:
     kind: OCIRepository
     name: *app
   maxHistory: 2
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: openclaw-operator
+            patch: |-
+              - op: add
+                path: /spec/template/spec/containers/0/env/-
+                value:
+                  name: GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: cluster-secrets
+                      key: GITHUB_TOKEN
   install:
     remediation:
       retries: 3
