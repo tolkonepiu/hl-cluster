@@ -7,6 +7,7 @@ metadata:
   namespace: kube-system # Required for Renovate lookups
 spec:
   interval: 1h
+  timeout: 5m
   url: https://helm.cilium.io
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
