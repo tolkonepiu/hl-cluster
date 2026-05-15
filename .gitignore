@@ -1,6 +1,8 @@
 # Devenv
 .devenv*
 devenv.local.nix
+.mcp.json
+opencode.json
 
 # direnv
 .direnv

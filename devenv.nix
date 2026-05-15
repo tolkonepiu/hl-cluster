@@ -24,7 +24,7 @@
   bundle = agentLib.mkBundle {
     inherit pkgs selection;
   };
-  agentInstallHook = agentLib.mkShellHook {
+  agentSkillsInstallHook = agentLib.mkShellHook {
     inherit pkgs bundle;
     targets = {
       agents = {
@@ -33,6 +33,28 @@
         structure = "copy-tree";
       };
     };
+  };
+  mcpServers = {
+    kubernetes-mcp-server = {
+      type = "http";
+      url = "https://kubernetes-mcp-server.popov.wtf/mcp";
+    };
+    flux-operator-mcp = {
+      type = "http";
+      url = "https://flux-operator-mcp.popov.wtf/mcp";
+    };
+    mcp-victoriametrics = {
+      type = "http";
+      url = "https://mcp-victoriametrics.popov.wtf/mcp";
+    };
+  };
+  opencodeMcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
+    flavor = "opencode";
+    settings.servers = mcpServers;
+  };
+  claudeCodeMcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
+    flavor = "claude-code";
+    settings.servers = mcpServers;
   };
 in {
   env = {
@@ -80,7 +102,15 @@ in {
   };
 
   tasks."agent-skills:install" = {
-    exec = agentInstallHook;
+    exec = agentSkillsInstallHook;
+    before = ["devenv:enterShell"];
+  };
+
+  tasks."mcp:install" = {
+    exec = ''
+      ln -sf ${claudeCodeMcpConfig} .mcp.json
+      ln -sf ${opencodeMcpConfig} opencode.json
+    '';
     before = ["devenv:enterShell"];
   };
 }
