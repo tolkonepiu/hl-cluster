@@ -21,6 +21,7 @@ enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
 envoy:
+  enabled: false
   rollOutPods: true
   prometheus:
     serviceMonitor:
