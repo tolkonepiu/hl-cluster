@@ -55,11 +55,6 @@ spec:
             uid: prometheus
             access: proxy
             url: http://vmsingle-stack.observability.svc.cluster.local:8428
-          - name: VictoriaMetrics
-            type: victoriametrics-metrics-datasource
-            uid: victoriametrics
-            access: proxy
-            url: http://vmsingle-stack.observability.svc.cluster.local:8428
           - name: Alertmanager
             type: alertmanager
             uid: alertmanager
@@ -166,17 +161,17 @@ spec:
           datasource: Prometheus
       victoria-metrics:
         operator:
-          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/vm/operator.json
-          datasource: VictoriaMetrics
+          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/operator.json
+          datasource: Prometheus
         victoriametrics:
-          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/vm/victoriametrics.json
-          datasource: VictoriaMetrics
+          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/victoriametrics.json
+          datasource: Prometheus
         vmagent:
-          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/vm/vmagent.json
-          datasource: VictoriaMetrics
+          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/vmagent.json
+          datasource: Prometheus
         vmalert:
-          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/vm/vmalert.json
-          datasource: VictoriaMetrics
+          url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/vmalert.json
+          datasource: Prometheus
         alert-statistics:
           url: https://raw.githubusercontent.com/VictoriaMetrics/VictoriaMetrics/refs/heads/master/dashboards/alert-statistics.json
           datasource: Prometheus
@@ -218,7 +213,6 @@ spec:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
       - vonage-status-panel
-      - victoriametrics-metrics-datasource
     serviceMonitor:
       enabled: true
     route:
