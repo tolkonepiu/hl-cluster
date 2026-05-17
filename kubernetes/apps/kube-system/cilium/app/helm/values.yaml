@@ -19,7 +19,7 @@ dashboards:
 devices: end+
 enableIPv4BIGTCP: true
 endpointRoutes:
-  enabled: true
+  enabled: false
 envoy:
   enabled: false
   rollOutPods: true
