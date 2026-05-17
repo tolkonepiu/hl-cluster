@@ -230,8 +230,8 @@ spec:
         enabled: true
         hostnames: ["{{ .Release.Name }}.popov.wtf"]
         parentRefs:
-          - name: internal
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: network
             sectionName: https
     persistence:
       enabled: false

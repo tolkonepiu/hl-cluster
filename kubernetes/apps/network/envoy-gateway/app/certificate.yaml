@@ -5,9 +5,15 @@ kind: Certificate
 metadata:
   name: "popov-wtf-production"
 spec:
-  secretName: "popov-wtf-production-tls"
+  dnsNames:
+    - "popov.wtf"
+    - "*.popov.wtf"
+  duration: 160h
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "popov.wtf"
-  dnsNames: ["popov.wtf", "*.popov.wtf"]
+  privateKey:
+    algorithm: ECDSA
+  secretName: "popov-wtf-production-tls"
+  usages:
+    - digital signature

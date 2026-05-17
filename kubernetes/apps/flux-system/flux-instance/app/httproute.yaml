@@ -7,8 +7,8 @@ metadata:
 spec:
   hostnames: ["flux-webhook.popov.wtf"]
   parentRefs:
-    - name: external
-      namespace: kube-system
+    - name: envoy-external
+      namespace: envoy-external
       sectionName: https
   rules:
     - backendRefs:
