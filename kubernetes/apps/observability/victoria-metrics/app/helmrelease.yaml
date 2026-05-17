@@ -27,7 +27,9 @@ spec:
       spec:
         retentionPeriod: "7d"
         extraArgs:
-          memory.allowedPercent: "40"
+          cacheExpireDuration: 10m
+          memory.allowedBytes: 768MiB
+          prevCacheRemovalPercent: "0.2"
         storage:
           accessModes:
             - ReadWriteOnce
@@ -37,10 +39,10 @@ spec:
           storageClassName: openebs-hostpath
         resources:
           requests:
-            cpu: 500m
-            memory: 1Gi
+            cpu: 100m
+            memory: 512Mi
           limits:
-            memory: 2Gi
+            memory: 1280Mi
 
     vmcluster:
       enabled: false
@@ -60,15 +62,23 @@ spec:
                     managed-by: vm-operator
                 topologyKey: kubernetes.io/hostname
         extraArgs:
-          promscrape.maxScrapeSize: 50MiB
-          promscrape.streamParse: "true"
           promscrape.dropOriginalLabels: "true"
+          promscrape.maxScrapeSize: 16MiB
+          promscrape.minResponseSizeForStreamParse: 1MiB
+          promscrape.streamParse: "true"
+          memory.allowedBytes: 256MiB
+          remoteWrite.maxBlockSize: 1MiB
+          remoteWrite.maxRowsPerBlock: "5000"
+          remoteWrite.queues: "1"
         resources:
           requests:
-            cpu: 500m
+            cpu: 100m
             memory: 128Mi
           limits:
-            memory: 256Mi
+            memory: 384Mi
+
+    kubeApiServer:
+      enabled: false
 
     prometheus-node-exporter:
       vmScrape:
@@ -83,6 +93,12 @@ spec:
     alertmanager:
       spec:
         externalURL: https://am.popov.wtf
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 128Mi
       useManagedConfig: true
       config:
         route:
@@ -169,6 +185,12 @@ spec:
 
     vmalert:
       spec:
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            memory: 128Mi
         extraArgs:
           external.url: https://vm.popov.wtf
 
@@ -198,6 +220,10 @@ spec:
             - sourceLabels: [__name__]
               action: drop
               regex: "container_blkio_device_usage_total"
+            # Drop high-cardinality histograms in the minimal-memory profile.
+            - sourceLabels: [__name__]
+              action: drop
+              regex: "(kubelet_.*_duration_seconds_bucket|storage_operation_duration_seconds_bucket)"
             # Drop container spec metrics that overlap with kube-state-metrics.
             - sourceLabels: [__name__]
               action: drop
@@ -211,7 +237,7 @@ spec:
               regex: prober_probe_duration_seconds_bucket
             # Drop high-cardinality labels.
             - action: labeldrop
-              regex: (uid|id|pod_uid|interface)
+              regex: (uid|id|pod_uid|interface|beta_kubernetes_io_.*|kubernetes_io_.*|node_role_kubernetes_io_.*|p2p_k3s_cattle_io_enabled|plan_upgrade_cattle_io_.*)
             - action: drop
               sourceLabels: [__name__]
               regex: (rest_client_request_duration_seconds_bucket|rest_client_request_duration_seconds_sum|rest_client_request_duration_seconds_count)

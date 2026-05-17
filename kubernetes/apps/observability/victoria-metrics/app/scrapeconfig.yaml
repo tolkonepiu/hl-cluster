@@ -10,12 +10,16 @@ spec:
         - 10.101.0.101:2381
         - 10.101.0.102:2381
         - 10.101.0.103:2381
-  scrapeInterval: 15s
+  scrapeInterval: 60s
   metricsPath: /metrics
   relabelings:
     - action: replace
       targetLabel: job
       replacement: *name
+  metricRelabelings:
+    - action: drop
+      sourceLabels: [__name__]
+      regex: etcd_request_duration_seconds_(bucket|sum|count)
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
 apiVersion: monitoring.coreos.com/v1alpha1
