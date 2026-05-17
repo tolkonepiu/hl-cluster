@@ -9,14 +9,11 @@ spec:
     kind: OCIRepository
     name: grafana
   interval: 1h
-  timeout: 15m
   values:
     annotations:
       reloader.stakater.com/auto: "true"
     deploymentStrategy:
       type: Recreate
-    livenessProbe:
-      initialDelaySeconds: 300
     resources:
       requests:
         memory: 128Mi
@@ -206,13 +203,6 @@ spec:
           memory: 256Mi
     testFramework:
       enabled: false
-    plugins:
-      - grafana-clock-panel
-      - grafana-piechart-panel
-      - grafana-worldmap-panel
-      - natel-discrete-panel
-      - pr0ps-trackmap-panel
-      - vonage-status-panel
     serviceMonitor:
       enabled: true
     route:
