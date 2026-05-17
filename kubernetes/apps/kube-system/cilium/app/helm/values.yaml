@@ -18,7 +18,7 @@ cni:
 dashboards:
   enabled: true
 devices: end+
-enableIPv4BIGTCP: true
+enableIPv4BIGTCP: false
 endpointRoutes:
   enabled: true
 envoy:
