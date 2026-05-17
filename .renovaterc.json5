@@ -1,8 +1,9 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
-    "config:best-practices",
+    "config:recommended",
     "docker:enableMajor",
+    "helpers:pinGitHubActionDigests",
     "github>tolkonepiu/hl-cluster//.renovate/customManagers.json5",
     "github>tolkonepiu/hl-cluster//.renovate/grafanaDashboards.json5",
     "github>tolkonepiu/hl-cluster//.renovate/groups.json5",
