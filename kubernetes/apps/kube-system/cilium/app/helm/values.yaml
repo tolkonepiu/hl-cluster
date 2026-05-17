@@ -5,6 +5,7 @@ bandwidthManager:
   bbr: true
 bpf:
   datapathMode: netkit
+  hostLegacyRouting: true
   masquerade: true
   preallocateMaps: true
 bpfClockProbe: true
