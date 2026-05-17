@@ -220,10 +220,10 @@ spec:
             - sourceLabels: [__name__]
               action: drop
               regex: "container_blkio_device_usage_total"
-            # Drop high-cardinality histograms in the minimal-memory profile.
+            # Drop high-cardinality histograms not used by default recording rules.
             - sourceLabels: [__name__]
               action: drop
-              regex: "(kubelet_.*_duration_seconds_bucket|storage_operation_duration_seconds_bucket)"
+              regex: "storage_operation_duration_seconds_bucket"
             # Drop container spec metrics that overlap with kube-state-metrics.
             - sourceLabels: [__name__]
               action: drop
