@@ -191,6 +191,7 @@ spec:
       dashboards:
         enabled: true
         searchNamespace: ALL
+        resource: configmap
         labelValue: ""
         label: grafana_dashboard
         folderAnnotation: grafana_folder
@@ -207,7 +208,7 @@ spec:
           cpu: 5m
           memory: 64Mi
         limits:
-          memory: 192Mi
+          memory: 256Mi
     testFramework:
       enabled: false
     plugins:
