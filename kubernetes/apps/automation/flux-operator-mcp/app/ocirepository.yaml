@@ -10,5 +10,6 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.49.0@sha256:2a48f21bedd92119a7fed92f93b05b7682492cec646602399e6b563b7d34db5c
+    tag: 0.49.0
+    digest: sha256:2a48f21bedd92119a7fed92f93b05b7682492cec646602399e6b563b7d34db5c
   url: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator-mcp
