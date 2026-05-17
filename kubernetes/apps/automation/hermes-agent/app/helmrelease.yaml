@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: nousresearch/hermes-agent
-              tag: latest
+              tag: v2026.5.16
             args:
               - gateway
               - run
