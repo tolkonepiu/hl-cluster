@@ -2,20 +2,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: kube-system
-configurations:
-  - ./helm/kustomizeconfig.yaml
-configMapGenerator:
-  - name: kube-vip-values
-    files:
-      - values.yaml=./helm/values.yaml
-    options:
-      disableNameSuffixHash: true
-generatorOptions:
-  disableNameSuffixHash: true
-  labels:
-    app.kubernetes.io/component: kube-vip
-    app.kubernetes.io/name: kube-vip
-    app.kubernetes.io/part-of: kube-vip
 resources:
   - ./helmrelease.yaml
+  - ./helmrepository.yaml

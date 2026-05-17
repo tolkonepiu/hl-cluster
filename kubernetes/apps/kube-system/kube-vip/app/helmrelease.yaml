@@ -1,14 +1,4 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrepository-source-v1.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: kube-vip
-  namespace: kube-system
-spec:
-  interval: 1h
-  url: https://kube-vip.github.io/helm-charts
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -31,9 +21,35 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  valuesFrom:
-    - kind: ConfigMap
-      name: kube-vip-values
   values:
-    podAnnotations:
-      reloader.stakater.com/auto: "true"
+    config:
+      # VIP address - this is the address that will be assigned to the load balancer
+      address: "10.101.0.100"
+
+    env:
+      # Interface to bind VIP to (auto-detect if empty)
+      vip_interface: ""
+      # Enable ARP for VIP
+      vip_arp: "true"
+      # Enable load balancer functionality for control plane only
+      lb_enable: "true"
+      # Load balancer port (default kube-api port)
+      lb_port: "6443"
+      # VIP CIDR (32 for single IP)
+      vip_cidr: "32"
+      # Enable control plane mode (create VIP for API server)
+      cp_enable: "true"
+      # Disable service load balancing (Cilium handles this)
+      svc_enable: "false"
+      # Disable service election since svc_enable is false
+      svc_election: "false"
+      # Enable VIP leader election
+      vip_leaderelection: "true"
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists

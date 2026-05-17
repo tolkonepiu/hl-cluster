@@ -82,7 +82,7 @@ in {
     sops
     stern
     yaml-language-server
-    yq
+    yq-go
   ];
 
   git-hooks.hooks = {
