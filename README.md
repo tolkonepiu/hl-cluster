@@ -70,6 +70,9 @@ on this hardware platform, so k3s was chosen instead.
 Core components that form the foundation of the cluster:
 
 - [cilium/cilium](https://github.com/cilium/cilium): Kubernetes CNI.
+- [envoyproxy/envoy](https://github.com/envoyproxy/gateway): Kubernetes-based
+  application gateway using
+  [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/).
 - [jetstack/cert-manager](https://cert-manager.io/docs/): Creates SSL
   certificates for services in my Kubernetes cluster.
 - [kubernetes-sigs/external-dns](https://github.com/kubernetes-sigs/external-dns):
