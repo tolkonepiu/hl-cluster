@@ -100,7 +100,7 @@ spec:
           03-database-migration:
             image: &image
               repository: ghcr.io/plastic-labs/honcho
-              tag: v3.0.6
+              tag: v3.0.6@sha256:5ebbd47fe03f2e77c14922abf587c5b21c559a490187339d9f70bad6ef1f775c
             envFrom: &envFrom
               - secretRef:
                   name: honcho-secret
@@ -165,7 +165,7 @@ spec:
           app:
             image:
               repository: ghcr.io/tolkonepiu/honcho-dashboard
-              tag: v0.5.7
+              tag: v0.5.7@sha256:161f27122b245556f83eb6e7beeec2368676a8d6dc3ea6fe4ef08c2eb604d537
             env:
               - name: HONCHO_BASE_URL
                 value: http://honcho-app.automation.svc.cluster.local:8000
