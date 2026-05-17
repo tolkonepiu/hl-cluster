@@ -19,7 +19,7 @@ dashboards:
 devices: end+
 enableIPv4BIGTCP: true
 endpointRoutes:
-  enabled: false
+  enabled: true
 envoy:
   enabled: false
   rollOutPods: true
@@ -81,3 +81,6 @@ securityContext:
       - NET_ADMIN
       - SYS_ADMIN
       - SYS_RESOURCE
+socketLB:
+  enabled: true
+  hostNamespaceOnly: true
