@@ -16,11 +16,11 @@ spec:
       type: Recreate
     resources:
       requests:
-        memory: 256Mi
-        cpu: 200m
+        memory: 128Mi
+        cpu: 100m
       limits:
-        memory: 512Mi
-        cpu: 2000m
+        memory: 384Mi
+        cpu: 500m
     env:
       GF_ANALYTICS_REPORTING_ENABLED: "false"
       GF_EXPLORE_ENABLED: true
@@ -195,10 +195,16 @@ spec:
           disableDelete: true
           foldersFromFilesStructure: true
       datasources:
-        enabled: true
+        enabled: false
         searchNamespace: ALL
         labelValue: ""
         label: grafana_datasource
+      resources:
+        requests:
+          cpu: 5m
+          memory: 32Mi
+        limits:
+          memory: 96Mi
     testFramework:
       enabled: false
     plugins:
