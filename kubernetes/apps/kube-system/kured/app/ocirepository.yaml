@@ -11,4 +11,5 @@ spec:
     operation: copy
   ref:
     tag: 5.11.0
+    digest: sha256:f96eb9aad39bfc1c3f36b8546e00c4cb64bff305d17b30bd71ed3b62802e0f27
   url: oci://ghcr.io/kubereboot/charts/kured
