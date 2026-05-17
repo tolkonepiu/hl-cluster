@@ -9,6 +9,7 @@ spec:
     kind: OCIRepository
     name: grafana
   interval: 1h
+  timeout: 15m
   values:
     annotations:
       reloader.stakater.com/auto: "true"
