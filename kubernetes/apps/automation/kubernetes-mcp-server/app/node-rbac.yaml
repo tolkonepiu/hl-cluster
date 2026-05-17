@@ -10,6 +10,10 @@ rules:
     resources:
       - nodes
     verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources:
+      - nodes/proxy
+    verbs: ["get"]
   - apiGroups: ["metrics.k8s.io"]
     resources:
       - nodes
