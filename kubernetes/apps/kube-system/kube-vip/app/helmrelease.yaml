@@ -5,7 +5,6 @@ kind: HelmRelease
 metadata:
   name: kube-vip
 spec:
-  interval: 1h
   chart:
     spec:
       chart: kube-vip
@@ -14,13 +13,7 @@ spec:
         kind: HelmRepository
         name: kube-vip
         namespace: kube-system
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     config:
       # VIP address - this is the address that will be assigned to the load balancer

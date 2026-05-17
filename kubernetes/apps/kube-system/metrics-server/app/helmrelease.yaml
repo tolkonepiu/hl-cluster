@@ -15,7 +15,6 @@ kind: HelmRelease
 metadata:
   name: metrics-server
 spec:
-  interval: 1h
   chart:
     spec:
       chart: metrics-server
@@ -24,13 +23,7 @@ spec:
         kind: HelmRepository
         name: metrics-server
         namespace: kube-system
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     args:
       - --kubelet-insecure-tls

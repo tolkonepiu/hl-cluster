@@ -19,17 +19,10 @@ kind: HelmRelease
 metadata:
   name: flux-operator-mcp
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: flux-operator-mcp
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     transport: http
     readonly: true

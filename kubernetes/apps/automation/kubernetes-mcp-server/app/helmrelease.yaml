@@ -19,17 +19,10 @@ kind: HelmRelease
 metadata:
   name: kubernetes-mcp-server
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: kubernetes-mcp-server
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+  interval: 1h
   values:
     image:
       registry: ghcr.io
