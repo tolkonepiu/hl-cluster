@@ -25,7 +25,6 @@ spec:
             envFrom:
               - secretRef:
                   name: hermes-agent-secret
-                  optional: true
             env:
               API_SERVER_ENABLED: "true"
               API_SERVER_HOST: 0.0.0.0
