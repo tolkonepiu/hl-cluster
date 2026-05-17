@@ -14,7 +14,7 @@ spec:
       registry: ghcr.io
       repository: containers/kubernetes-mcp-server
       # renovate: datasource=docker depName=ghcr.io/containers/kubernetes-mcp-server
-      version: v0.0.62
+      version: v0.0.62@sha256:bd7e9ff49b0941ff230508dfceb87162c4a2be67b180c28f5d1b204fc58fa2e9
     service:
       type: ClusterIP
     ingress:

@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: ghcr.io/victoriametrics/mcp-victoriametrics
-              tag: v1.20.2
+              tag: v1.20.2@sha256:bcbf84f945d6efb03fb8b2d2ccc3294420dccdc0b445752dce96f02619416dfe
             env:
               MCP_DISABLED_TOOLS: documentation,export,flags,metric_relabel_debug,downsampling_filters_debug,retention_filters_debug,test_rules
               MCP_LISTEN_ADDR: 0.0.0.0:8080

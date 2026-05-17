@@ -20,7 +20,7 @@ spec:
           01-init-db:
             image:
               repository: ghcr.io/home-operations/postgres-init
-              tag: "18"
+              tag: 18.4@sha256:5086f94abc783f1147d7c2a32c01db00ab594820026e4f6a82ac2af3dbde7fc7
             envFrom:
               - secretRef:
                   name: umami-secret
@@ -58,7 +58,7 @@ spec:
           app:
             image:
               repository: ghcr.io/umami-software/umami
-              tag: 3.1.0
+              tag: 3.1.0@sha256:e3f80c0625aad7179b49da27d475357cabb1068b8cacd9a792cfd6966888b123
             envFrom:
               - secretRef:
                   name: umami-secret
