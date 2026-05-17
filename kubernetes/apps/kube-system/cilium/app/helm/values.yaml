@@ -5,7 +5,6 @@ bandwidthManager:
   bbr: true
 bpf:
   datapathMode: netkit
-  hostLegacyRouting: true
   masquerade: true
   preallocateMaps: true
 bpfClockProbe: true
@@ -18,7 +17,7 @@ cni:
 dashboards:
   enabled: true
 devices: end+
-enableIPv4BIGTCP: false
+enableIPv4BIGTCP: true
 endpointRoutes:
   enabled: true
 envoy:
