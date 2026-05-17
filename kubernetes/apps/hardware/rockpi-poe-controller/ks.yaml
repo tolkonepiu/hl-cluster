@@ -13,10 +13,6 @@ spec:
       app.kubernetes.io/part-of: hardware-management
       topology.kubernetes.io/zone: cluster
       node-type: rockpi
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   interval: 1h
   path: ./kubernetes/apps/hardware/rockpi-poe-controller/app
   prune: true

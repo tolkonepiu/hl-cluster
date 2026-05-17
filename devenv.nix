@@ -61,6 +61,7 @@ in {
     ANSIBLE_CONFIG = "${config.env.DEVENV_ROOT}/ansible/ansible.cfg";
     KUBECONFIG = "${config.env.DEVENV_ROOT}/kubeconfig";
     SOPS_AGE_KEY_FILE = "${config.env.DEVENV_ROOT}/age.key";
+    SOPS_CONFIG = "${config.env.DEVENV_ROOT}/.sops.yaml";
   };
 
   packages = with pkgs; [

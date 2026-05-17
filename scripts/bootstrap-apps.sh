@@ -57,9 +57,9 @@ function apply_sops_secrets() {
 	log debug "Applying secrets"
 
 	local -r secrets=(
+		"${ROOT_DIR}/bootstrap/sops-age.sops.yaml"
 		"${ROOT_DIR}/bootstrap/github-deploy-key.sops.yaml"
 		"${ROOT_DIR}/kubernetes/components/common/sops/cluster-secrets.sops.yaml"
-		"${ROOT_DIR}/kubernetes/components/common/sops/sops-age.sops.yaml"
 	)
 
 	for secret in "${secrets[@]}"; do
