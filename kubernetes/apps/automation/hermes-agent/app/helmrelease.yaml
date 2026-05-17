@@ -74,6 +74,13 @@ spec:
         fsGroup: 10000
         fsGroupChangePolicy: OnRootMismatch
     persistence:
+      config-file:
+        type: configMap
+        name: hermes-agent-configmap
+        globalMounts:
+          - path: /opt/data/config.yaml
+            subPath: config.yaml
+            readOnly: true
       data:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce
