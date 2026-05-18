@@ -13,11 +13,7 @@
     {
       customType: "regex",
       description: "Process annotated dependencies",
-      managerFilePatterns: [
-        "/\\.env$/",
-        "/\\.sh$/",
-        "/\\.yaml$/",
-      ],
+      managerFilePatterns: ["/\\.env$/", "/\\.sh$/", "/\\.yaml$/"],
       matchStrings: [
         // # renovate: datasource=github-releases depName=k3s-io/k3s
         // k3s_release_version: &version v1.29.0+k3s1
@@ -37,7 +33,7 @@
       description: "Process annotated OpenClaw skills pinned by Git tags",
       managerFilePatterns: ["/\\.yaml$/"],
       matchStrings: [
-        "# renovate: datasource=(?<datasource>github-tags|github-releases) depName=(?<depName>\\S+)\\n\\s*-\\s*\"pack:[^\"]+@(?<currentValue>[^\"]+)\"",
+        '# renovate: datasource=(?<datasource>github-tags|github-releases) depName=(?<depName>\\S+)\\n\\s*-\\s*"pack:[^"]+@(?<currentValue>[^"]+)"',
       ],
       extractVersionTemplate: "^v?(?<version>.*)$",
     },
@@ -46,9 +42,16 @@
       description: "Process annotated OpenClaw skills pinned by commit hash",
       managerFilePatterns: ["/\\.yaml$/"],
       matchStrings: [
-        "# renovate: datasource=github-digest depName=(?<depName>\\S+)\\n\\s*-\\s*\"pack:[^\"]+@(?<currentDigest>[0-9a-f]{7,40})\"",
+        '# renovate: datasource=github-digest depName=(?<depName>\\S+)\\n\\s*-\\s*"pack:[^"]+@(?<currentDigest>[0-9a-f]{7,40})"',
       ],
       versioningTemplate: "loose",
+    },
+    {
+      customType: "regex",
+      description: "Process OCI dependencies",
+      managerFilePatterns: ["/\\.yaml(?:\\.j2)?$/"],
+      matchStrings: ["oci://(?<depName>[^:]+):(?<currentValue>\\S+)"],
+      datasourceTemplate: "docker",
     },
   ],
 }
