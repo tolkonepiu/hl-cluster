@@ -22,11 +22,16 @@
     {
       description: "Flux Operator Group",
       groupName: "Flux Operator",
-      matchPackageNames: ["/flux-operator/", "/flux-instance/"],
       matchDatasources: ["docker"],
+      matchPackageNames: [
+        "/flux-operator/",
+        "/flux-instance/",
+        "/flux-operator-manifests/",
+      ],
       group: {
         commitMessageTopic: "{{{groupName}}} group",
       },
+      minimumGroupSize: 3,
     },
   ],
 }
