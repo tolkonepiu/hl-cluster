@@ -5,3 +5,5 @@ model:
   base_url: https://chatgpt.com/backend-api/codex
 terminal:
   backend: local
+dashboard:
+  theme: cyberpunk
