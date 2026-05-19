@@ -7,3 +7,10 @@ terminal:
   backend: local
 dashboard:
   theme: cyberpunk
+mcp_servers:
+  kubernetes-mcp-server:
+    url: http://kubernetes-mcp-server.automation.svc.cluster.local:8080/mcp
+  mcp-victoriametrics:
+    url: http://mcp-victoriametrics.automation.svc.cluster.local:8080/mcp
+  flux-operator-mcp:
+    url: http://flux-operator-mcp.automation.svc.cluster.local:9090/mcp
