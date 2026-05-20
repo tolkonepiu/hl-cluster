@@ -97,7 +97,7 @@ spec:
     - "pack:JuliusBrussee/caveman/skills/caveman@v1.8.2"
   plugins:
     - "@honcho-ai/openclaw-honcho@1.5.0"
-    - "@martian-engineering/lossless-claw@0.10.0"
+    - "@martian-engineering/lossless-claw@0.11.2"
   workspace:
     bootstrap:
       enabled: false
