@@ -8,7 +8,7 @@ spec:
   image:
     repository: ghcr.io/tolkonepiu/openclaw-full
     # renovate: datasource=docker depName=ghcr.io/tolkonepiu/openclaw-full
-    tag: v2026.5.12@sha256:9b47fadec0a075dc90a35dff58355d85e006e54babaf6f9f52b6ed4a3c554322
+    tag: v2026.5.19@sha256:b7cbadd868ade39e8b01d7cd03213bf33f1ae352b43b0208cc81fc77ba250509
   envFrom:
     - secretRef:
         name: openclaw-secret
