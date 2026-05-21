@@ -33,5 +33,13 @@
       },
       minimumGroupSize: 3,
     },
+    {
+      description: "K3s Group",
+      groupName: "K3s",
+      matchPackageNames: ["k3s-io/k3s", "rancher/k3s-upgrade"],
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
+      },
+    },
   ],
 }
