@@ -11,5 +11,3 @@ resources:
   - ./honcho/ks.yaml
   - ./kubernetes-mcp-server/ks.yaml
   - ./mcp-victoriametrics/ks.yaml
-  - ./openclaw-operator/ks.yaml
-  # - ./openclaw/ks.yaml

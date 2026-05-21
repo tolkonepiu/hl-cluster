@@ -3,15 +3,6 @@
   customManagers: [
     {
       customType: "regex",
-      description: "Process npm package strings in Yaml files",
-      managerFilePatterns: ["/\\.yaml$/"],
-      matchStrings: [
-        '"(?<depName>@?[-\\w.]+(?:/[-\\w.]+)?)@(?<currentValue>\\d[^\"]*)"',
-      ],
-      datasourceTemplate: "npm",
-    },
-    {
-      customType: "regex",
       description: "Process annotated dependencies",
       managerFilePatterns: ["/\\.env$/", "/\\.sh$/", "/\\.yaml$/"],
       matchStrings: [
@@ -27,24 +18,6 @@
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)",
       ],
       datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-    },
-    {
-      customType: "regex",
-      description: "Process annotated OpenClaw skills pinned by Git tags",
-      managerFilePatterns: ["/\\.yaml$/"],
-      matchStrings: [
-        '# renovate: datasource=(?<datasource>github-tags|github-releases) depName=(?<depName>\\S+)\\n\\s*-\\s*"pack:[^"]+@(?<currentValue>[^"]+)"',
-      ],
-      extractVersionTemplate: "^v?(?<version>.*)$",
-    },
-    {
-      customType: "regex",
-      description: "Process annotated OpenClaw skills pinned by commit hash",
-      managerFilePatterns: ["/\\.yaml$/"],
-      matchStrings: [
-        '# renovate: datasource=github-digest depName=(?<depName>\\S+)\\n\\s*-\\s*"pack:[^"]+@(?<currentDigest>[0-9a-f]{7,40})"',
-      ],
-      versioningTemplate: "loose",
     },
     {
       customType: "regex",

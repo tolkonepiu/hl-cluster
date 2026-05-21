@@ -8,7 +8,7 @@
 </h1>
 
 <p align="center">
-  ... managed with Flux, Renovate, OpenClaw, and GitHub Actions  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/512.gif" alt="🤖" width="16" height="16">
+  ... managed with Flux, Renovate, Hermes Agent, and GitHub Actions  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f916/512.gif" alt="🤖" width="16" height="16">
 </p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="400" />
@@ -108,8 +108,9 @@ For observability and monitoring of the cluster the following software is used:
   formatting and running periodic jobs
 - [Renovate](https://github.com/renovatebot/renovate) keeps the application
   charts and container images up-to-date
-- [OpenClaw](https://github.com/openclaw/openclaw) acts as an operator assistant
-  for diagnostics, troubleshooting, and Git-backed maintenance workflows
+- [Hermes Agent](https://github.com/nousresearch/hermes-agent) acts as an
+  operator assistant for diagnostics, troubleshooting, and Git-backed
+  maintenance workflows
 
 <!-- markdownlint-disable -->
 
