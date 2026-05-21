@@ -100,7 +100,7 @@ spec:
           03-database-migration:
             image: &image
               repository: ghcr.io/plastic-labs/honcho
-              tag: v3.0.6@sha256:5ebbd47fe03f2e77c14922abf587c5b21c559a490187339d9f70bad6ef1f775c
+              tag: v3.0.7@sha256:5d9d2c53bcc0297de497634a3611728f81d171cc428cc93d74c1f07c405c2d33
             envFrom: &envFrom
               - secretRef:
                   name: honcho-secret
