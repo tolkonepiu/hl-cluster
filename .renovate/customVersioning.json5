@@ -5,7 +5,7 @@
       description: "Handle TorrServer MatriX image tags",
       matchDatasources: ["docker"],
       matchPackageNames: ["ghcr.io/yourok/torrserver"],
-      versioning: "regex:^MatriX\\.(?<major>\\d+)$",
+      versioning: "regex:^MatriX\\.(?<major>\\d+)(?:\\.(?<patch>\\d+))?$",
     },
   ],
 }
