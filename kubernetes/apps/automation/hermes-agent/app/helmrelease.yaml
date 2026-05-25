@@ -32,6 +32,7 @@ spec:
               API_SERVER_HOST: 0.0.0.0
               API_SERVER_CORS_ORIGINS: "*"
               HERMES_DASHBOARD: "1"
+              HERMES_DASHBOARD_TUI: "1"
               HERMES_DASHBOARD_HOST: 0.0.0.0
               HERMES_DASHBOARD_PORT: &dashboardPort 9119
               HONCHO_BASE_URL: http://honcho-app.automation.svc.cluster.local:8000
