@@ -34,27 +34,19 @@
       };
     };
   };
-  mcpServers = {
+  mcp = {
     kubernetes-mcp-server = {
-      type = "http";
+      type = "remote";
       url = "https://kubernetes-mcp-server.popov.wtf/mcp";
     };
     flux-operator-mcp = {
-      type = "http";
+      type = "remote";
       url = "https://flux-operator-mcp.popov.wtf/mcp";
     };
     mcp-victoriametrics = {
-      type = "http";
+      type = "remote";
       url = "https://mcp-victoriametrics.popov.wtf/mcp";
     };
-  };
-  opencodeMcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
-    flavor = "opencode";
-    settings.servers = mcpServers;
-  };
-  claudeCodeMcpConfig = inputs.mcp-servers-nix.lib.mkConfig pkgs {
-    flavor = "claude-code";
-    settings.servers = mcpServers;
   };
 in {
   env = {
@@ -102,16 +94,13 @@ in {
     markdownlint.enable = true;
   };
 
-  tasks."agent-skills:install" = {
-    exec = agentSkillsInstallHook;
-    before = ["devenv:enterShell"];
+  opencode = {
+    enable = true;
+    inherit mcp;
   };
 
-  tasks."mcp:install" = {
-    exec = ''
-      ln -sf ${claudeCodeMcpConfig} .mcp.json
-      ln -sf ${opencodeMcpConfig} opencode.json
-    '';
+  tasks."agent-skills:install" = {
+    exec = agentSkillsInstallHook;
     before = ["devenv:enterShell"];
   };
 }

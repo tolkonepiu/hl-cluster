@@ -134,26 +134,6 @@
         "type": "github"
       }
     },
-    "mcp-servers-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779116495,
-        "narHash": "sha256-FSsma+PqddvLRl89ubbyR2aBwW58acVXNCLL9K+EAXM=",
-        "owner": "natsukium",
-        "repo": "mcp-servers-nix",
-        "rev": "170be0a45591665d93c034f019d349fa9cf42f05",
-        "type": "github"
-      },
-      "original": {
-        "owner": "natsukium",
-        "repo": "mcp-servers-nix",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1778869304,
@@ -176,7 +156,6 @@
         "devenv": "devenv",
         "flux-agent-skills": "flux-agent-skills",
         "git-hooks": "git-hooks",
-        "mcp-servers-nix": "mcp-servers-nix",
         "nixpkgs": "nixpkgs"
       }
     }

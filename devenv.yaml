@@ -8,11 +8,6 @@ inputs:
     inputs:
       nixpkgs:
         follows: nixpkgs
-  mcp-servers-nix:
-    url: github:natsukium/mcp-servers-nix
-    inputs:
-      nixpkgs:
-        follows: nixpkgs
   agent-skills:
     url: github:Kyure-A/agent-skills-nix
     inputs:
