@@ -82,6 +82,7 @@ SESSION_HISTORY_MAX_TOKENS = 4096
 [dialectic.levels.minimal]
 MAX_TOOL_ITERATIONS = 1
 MAX_OUTPUT_TOKENS = 250
+# v3.0.7 default: auto lets model decide when to call tools ("any"/"required" forces tool use)
 TOOL_CHOICE = "auto"
 
 [dialectic.levels.minimal.model_config]
@@ -149,6 +150,7 @@ ENABLED_TYPES = ["omni"]
 MAX_TOOL_ITERATIONS = 20
 HISTORY_TOKEN_LIMIT = 16384
 
+# Specialists are configured separately by schema, even when sharing the same model.
 [dream.deduction_model_config]
 transport = "anthropic"
 model = "claude-haiku-4-5"
