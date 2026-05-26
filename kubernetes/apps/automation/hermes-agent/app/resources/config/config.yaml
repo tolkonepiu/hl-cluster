@@ -11,6 +11,20 @@ memory:
   memory_enabled: true
   user_profile_enabled: true
   provider: honcho
+telegram:
+  require_mention: true
+  mention_patterns:
+    - "кестрел"
+    - "kestrel"
+  reply_to_mode: true
+  reactions: true
+display:
+  platforms:
+    telegram:
+      tool_progress: "off"
+      cleanup_progress: true
+      runtime_footer:
+        enabled: false
 mcp_servers:
   kubernetes-mcp-server:
     url: http://kubernetes-mcp-server.automation.svc.cluster.local:8080/mcp
