@@ -84,6 +84,9 @@ spec:
           - path: /opt/data/config.yaml
             subPath: config.yaml
             readOnly: true
+          - path: /opt/data/honcho.json
+            subPath: honcho.json
+            readOnly: true
       data:
         type: persistentVolumeClaim
         accessMode: ReadWriteOnce

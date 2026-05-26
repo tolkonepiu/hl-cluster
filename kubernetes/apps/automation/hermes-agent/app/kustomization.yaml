@@ -8,6 +8,7 @@ resources:
 configMapGenerator:
   - name: hermes-agent-configmap
     files:
-      - config.yaml=./resources/config.yaml
+      - config.yaml=./resources/config/config.yaml
+      - honcho.json=./resources/config/honcho.json
 generatorOptions:
   disableNameSuffixHash: true

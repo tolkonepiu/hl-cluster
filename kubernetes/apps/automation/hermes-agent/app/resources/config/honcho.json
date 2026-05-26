@@ -1,0 +1,20 @@
+{
+  "hosts": {
+    "hermes": {
+      "peerName": "owner",
+      "aiPeer": "hermes",
+      "workspace": "hermes",
+      "writeFrequency": "async",
+      "recallMode": "hybrid",
+      "dialecticCadence": 2,
+      "dialecticReasoningLevel": "low",
+      "sessionStrategy": "per-session",
+      "enabled": true,
+      "saveMessages": true,
+      "observation": {
+        "user": { "observeMe": true, "observeOthers": true },
+        "ai": { "observeMe": false, "observeOthers": true }
+      }
+    }
+  }
+}
