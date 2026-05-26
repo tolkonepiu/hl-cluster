@@ -105,7 +105,18 @@ spec:
               - secretRef:
                   name: honcho-secret
             env: &env
-              DB_CONNECTION_URI: postgresql+psycopg://$(HONCHO_DB_USER):$(HONCHO_DB_PASS)@tolstoy-rw.database.svc.cluster.local:5432/$(HONCHO_DBNAME)
+              - name: DB_CONNECTION_URI
+                value: postgresql+psycopg://$(HONCHO_DB_USER):$(HONCHO_DB_PASS)@tolstoy-rw.database.svc.cluster.local:5432/$(HONCHO_DBNAME)
+              - name: LLM_OPENAI_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: cluster-secrets
+                    key: OPENAI_API_KEY
+              - name: LLM_ANTHROPIC_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: cluster-secrets
+                    key: ANTHROPIC_API_KEY
             command:
               - python
               - scripts/provision_db.py
