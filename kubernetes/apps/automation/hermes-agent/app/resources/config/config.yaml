@@ -11,6 +11,8 @@ memory:
   memory_enabled: true
   user_profile_enabled: true
   provider: honcho
+cron:
+  wrap_response: false
 telegram:
   require_mention: true
   mention_patterns:
