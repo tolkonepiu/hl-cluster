@@ -17,7 +17,7 @@ telegram:
     - "кестрел"
     - "kestrel"
   reply_to_mode: true
-  reactions: true
+  reactions: false
 display:
   platforms:
     telegram:
