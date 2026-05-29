@@ -69,6 +69,11 @@ spec:
                 memory: 256Mi
               limits:
                 memory: 1Gi
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        runAsNonRoot: false
     persistence:
       config-file:
         type: configMap
