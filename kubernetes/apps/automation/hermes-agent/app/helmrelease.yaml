@@ -69,13 +69,6 @@ spec:
                 memory: 256Mi
               limits:
                 memory: 1Gi
-    defaultPodOptions:
-      securityContext:
-        runAsUser: 10000
-        runAsGroup: 10000
-        runAsNonRoot: true
-        fsGroup: 10000
-        fsGroupChangePolicy: OnRootMismatch
     persistence:
       config-file:
         type: configMap
