@@ -18,6 +18,7 @@ telegram:
     - "kestrel"
   reply_to_mode: true
   reactions: false
+  gateway_restart_notification: false
 display:
   platforms:
     telegram:
