@@ -176,7 +176,7 @@ spec:
           app:
             image:
               repository: ghcr.io/tolkonepiu/honcho-dashboard
-              tag: v0.5.9@sha256:5c5c54e4a679308ceeb4549db254a6f9a6849bc6c953872f0db72a7c40e8aeab
+              tag: v0.5.10@sha256:1de61154141da932ae5593e87201092b16d187c63f21bcb21d03e2c8e315ccb7
             env:
               - name: HONCHO_BASE_URL
                 value: http://honcho-app.automation.svc.cluster.local:8000
