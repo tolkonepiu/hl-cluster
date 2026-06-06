@@ -31,6 +31,7 @@ spec:
     - targets:
         - atlas-nl.rya-tone.ts.net:9100
         - atlas-ru.rya-tone.ts.net:9100
+        - atlas-lv.rya-tone.ts.net:9100
   metricsPath: /metrics
   relabelings:
     - action: replace
@@ -47,6 +48,7 @@ spec:
     - targets:
         - atlas-nl.rya-tone.ts.net:51821
         - atlas-ru.rya-tone.ts.net:51821
+        - atlas-lv.rya-tone.ts.net:51821
   scrapeInterval: 30s
   metricsPath: /metrics/prometheus
   relabelings:
@@ -64,6 +66,7 @@ spec:
     - targets:
         - atlas-nl.rya-tone.ts.net:8080
         - atlas-ru.rya-tone.ts.net:8080
+        - atlas-lv.rya-tone.ts.net:8080
   scrapeInterval: 30s
   metricsPath: /metrics
   relabelings:

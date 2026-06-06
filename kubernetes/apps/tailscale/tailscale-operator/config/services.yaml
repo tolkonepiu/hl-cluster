@@ -18,3 +18,13 @@ metadata:
 spec:
   externalName: placeholder
   type: ExternalName
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    tailscale.com/tailnet-fqdn: atlas-lv.rya-tone.ts.net
+  name: atlas-lv
+spec:
+  externalName: placeholder
+  type: ExternalName
