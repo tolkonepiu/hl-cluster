@@ -36,6 +36,11 @@ spec:
               HERMES_DASHBOARD_HOST: 0.0.0.0
               HERMES_DASHBOARD_PORT: &dashboardPort 9119
               HONCHO_BASE_URL: http://honcho-app.automation.svc.cluster.local:8000
+              GITHUB_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: cluster-secrets
+                    key: GITHUB_TOKEN
             probes:
               liveness: &gatewayProbe
                 enabled: true
