@@ -22,133 +22,10 @@ spec:
               tag: v2.9.0@sha256:5b8cfa805cb60b99a9e83a2df62d41c63865a315f7ee7cfed1a78052d93650b6
             command:
               - python3
-              - -c
-              - |
-                import socket
-                import time
-                import urllib.error
-                import urllib.request
-                from dataclasses import dataclass
-                from urllib.parse import urlparse
-
-
-                @dataclass(frozen=True)
-                class Target:
-                    name: str
-                    url: str
-                    ok_statuses: set[int]
-                    required: bool = True
-
-
-                TARGETS = [
-                    # Main YouTube connectivity check.
-                    Target(
-                        name="youtube-generate-204",
-                        url="https://www.youtube.com/generate_204",
-                        ok_statuses={204},
-                        required=True,
-                    ),
-
-                    # Used by pyytlounge thumbnails.
-                    Target(
-                        name="youtube-thumbnail",
-                        url="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
-                        ok_statuses={200},
-                        required=True,
-                    ),
-
-                    # Warms www.googleapis.com, used by pyytlounge captions API.
-                    Target(
-                        name="youtube-api-discovery",
-                        url="https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-                        ok_statuses={200},
-                        required=True,
-                    ),
-                ]
-
-
-                def resolve_host(host: str) -> list[str]:
-                    """
-                    Forces normal system DNS resolution.
-                    """
-                    infos = socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)
-                    ips = sorted({info[4][0] for info in infos})
-                    return ips
-
-
-                def request_url(target: Target, timeout: int = 10) -> tuple[bool, str]:
-                    request = urllib.request.Request(
-                        target.url,
-                        headers={
-                            "User-Agent": "Mozilla/5.0 youtube-warmup/1.0",
-                            "Cache-Control": "no-cache",
-                        },
-                        method="GET",
-                    )
-
-                    try:
-                        with urllib.request.urlopen(request, timeout=timeout) as response:
-                            status = response.status
-
-                        if status in target.ok_statuses:
-                            return True, f"status {status}"
-
-                        return False, f"unexpected status {status}"
-
-                    except urllib.error.HTTPError as error:
-                        # HTTPError still means DNS + TCP + TLS + HTTP reached the host.
-                        # But for these chosen URLs we expect stable success statuses,
-                        # so treat unexpected HTTP errors as failed checks.
-                        if error.code in target.ok_statuses:
-                            return True, f"status {error.code}"
-
-                        return False, f"http error {error.code}"
-
-                    except Exception as error:
-                        return False, f"{type(error).__name__}: {error}"
-
-
-                def warmup_target(target: Target, timeout: int = 10) -> bool:
-                    host = urlparse(target.url).hostname
-                    if not host:
-                        print(f"{target.name}: invalid URL: {target.url}")
-                        return False
-
-                    try:
-                        ips = resolve_host(host)
-                        print(f"{target.name}: resolved {host} -> {', '.join(ips) if ips else 'no addresses'}")
-                    except Exception as error:
-                        print(f"{target.name}: DNS failed for {host}: {type(error).__name__}: {error}")
-                        return False
-
-                    ok, message = request_url(target, timeout=timeout)
-                    print(f"{target.name}: {message}")
-
-                    return ok
-
-
-                for attempt in range(1, 11):
-                    print(f"Attempt {attempt}")
-
-                    results = []
-                    for target in TARGETS:
-                        ok = warmup_target(target)
-                        results.append((target, ok))
-
-                    required_failed = [
-                        target.name
-                        for target, ok in results
-                        if target.required and not ok
-                    ]
-
-                    if not required_failed:
-                        print(f"YouTube is ready on attempt {attempt}")
-                        raise SystemExit(0)
-
-                    print(f"YouTube is not ready on attempt {attempt}; failed: {', '.join(required_failed)}")
-                    time.sleep(10)
-
-                raise SystemExit("YouTube did not become ready")
+              - /app/youtube-healthcheck.py
+              - --attempts=10
+              - --sleep=10
+              - --timeout=10
         containers:
           app:
             image:
@@ -156,7 +33,20 @@ spec:
               tag: v2.9.0@sha256:5b8cfa805cb60b99a9e83a2df62d41c63865a315f7ee7cfed1a78052d93650b6
             probes:
               liveness:
-                enabled: false
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command:
+                      - python3
+                      - /app/youtube-healthcheck.py
+                      - --attempts=1
+                      - --sleep=0
+                      - --timeout=5
+                  initialDelaySeconds: 30
+                  periodSeconds: 30
+                  timeoutSeconds: 20
+                  failureThreshold: 1
               readiness:
                 enabled: false
             securityContext:
@@ -183,4 +73,11 @@ spec:
         name: isponsorblocktv-config
         globalMounts:
           - path: /app/data
+            readOnly: true
+      scripts:
+        type: configMap
+        name: isponsorblocktv-scripts
+        globalMounts:
+          - path: /app/youtube-healthcheck.py
+            subPath: youtube-healthcheck.py
             readOnly: true

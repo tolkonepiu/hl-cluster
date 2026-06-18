@@ -5,3 +5,9 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./secret.sops.yaml
+configMapGenerator:
+  - name: isponsorblocktv-scripts
+    files:
+      - youtube-healthcheck.py=./resources/youtube-healthcheck.py
+generatorOptions:
+  disableNameSuffixHash: true
