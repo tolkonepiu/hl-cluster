@@ -78,7 +78,7 @@ spec:
             memory: 384Mi
 
     kubeApiServer:
-      enabled: false
+      enabled: true
 
     prometheus-node-exporter:
       vmScrape:
