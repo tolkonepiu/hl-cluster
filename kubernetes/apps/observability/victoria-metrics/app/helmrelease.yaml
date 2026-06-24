@@ -11,6 +11,14 @@ spec:
   interval: 1h
   values:
     fullnameOverride: stack
+    defaultRules:
+      groups:
+        kubernetes-system-controller-manager:
+          enabled: false
+        kubernetes-system-scheduler:
+          enabled: false
+        kube-scheduler:
+          enabled: false
     victoria-metrics-operator:
       env:
         - name: VM_VMALERTDEFAULT_CONFIGRELOADERCPU
