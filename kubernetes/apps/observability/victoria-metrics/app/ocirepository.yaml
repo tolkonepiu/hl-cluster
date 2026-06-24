@@ -11,5 +11,5 @@ spec:
     operation: copy
   url: oci://ghcr.io/victoriametrics/helm-charts/victoria-metrics-k8s-stack
   ref:
-    tag: 0.85.3
-    digest: sha256:68a8b8cb17967b58a095b4541c84c619517c9fa6e96c40bdfca889156caa17e9
+    tag: 0.85.4
+    digest: sha256:4dc545a96abbf69abd142cdfdca0ca960e89b8829766a4a6edbd8bd99b03998f
