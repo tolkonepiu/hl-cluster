@@ -5,7 +5,7 @@ metadata:
   name: server
 spec:
   # renovate: datasource=github-releases depName=k3s-io/k3s
-  version: v1.36.1+k3s1
+  version: v1.36.2+k3s1
   serviceAccountName: system-upgrade-controller
   concurrency: 1
   cordon: true
@@ -17,4 +17,4 @@ spec:
     - { key: node-role.kubernetes.io/master, operator: Exists }
     - { key: node-role.kubernetes.io/etcd, operator: Exists }
   upgrade:
-    image: rancher/k3s-upgrade:v1.36.1-k3s1@sha256:204ceadf970c96dc8f04ae1c17240c1fbb8fbbba891f5a9f4246c8163473e4dc
+    image: rancher/k3s-upgrade:v1.36.2-k3s1@sha256:471084010ecf1bc6e4b9544529400bf47c8da3d268e2f67fa239dacd735c0083
