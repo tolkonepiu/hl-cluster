@@ -19,6 +19,11 @@ spec:
           enabled: false
         kube-scheduler:
           enabled: false
+        kube-prometheus-general.rules:
+          rules:
+            "count:up0":
+              spec:
+                expr: sum(up == bool 0) without(instance,pod,node)
     victoria-metrics-operator:
       env:
         - name: VM_VMALERTDEFAULT_CONFIGRELOADERCPU
