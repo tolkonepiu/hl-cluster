@@ -16,6 +16,17 @@ spec:
         strategy: Recreate
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          01-copy-config:
+            image:
+              repository: docker.io/library/busybox
+              tag: 1.37.0
+            command:
+              - /bin/sh
+              - -ec
+              - |
+                cp -f /config-source/config.yaml /opt/data/config.yaml
+                cp -f /config-source/honcho.json /opt/data/honcho.json
         containers:
           app:
             image:
@@ -89,11 +100,7 @@ spec:
         type: configMap
         name: hermes-agent-configmap
         globalMounts:
-          - path: /opt/data/config.yaml
-            subPath: config.yaml
-            readOnly: true
-          - path: /opt/data/honcho.json
-            subPath: honcho.json
+          - path: /config-source
             readOnly: true
       data:
         type: persistentVolumeClaim
