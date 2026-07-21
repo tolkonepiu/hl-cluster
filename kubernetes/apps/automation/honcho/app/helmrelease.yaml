@@ -164,14 +164,6 @@ spec:
       honcho-dashboard:
         strategy: RollingUpdate
         annotations: *annotations
-        pod:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: node-role.kubernetes.io/control-plane
-                        operator: DoesNotExist
         containers:
           app:
             image:

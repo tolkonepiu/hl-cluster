@@ -88,14 +88,6 @@ spec:
                 memory: 64Mi
               limits:
                 memory: 512Mi
-    defaultPodOptions:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: node-role.kubernetes.io/control-plane
-                    operator: DoesNotExist
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
