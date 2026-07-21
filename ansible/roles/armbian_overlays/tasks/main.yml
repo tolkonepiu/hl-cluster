@@ -75,3 +75,31 @@
         mode: "0644"
       when: armbian_overlays_user_list | length > 0
       notify: Mark reboot required
+    - name: Read current extraargs from armbianEnv
+      ansible.builtin.slurp:
+        src: "{{ armbian_overlays_env_file }}"
+      register: armbian_overlays_env_content
+      when: armbian_overlays_extraargs | default([]) | length > 0
+    - name: Write extraargs in armbianEnv
+      become: true
+      ansible.builtin.lineinfile:
+        path: "{{ armbian_overlays_env_file }}"
+        regexp: "^extraargs="
+        line: >-
+          extraargs={{
+            (
+              (
+                armbian_overlays_env_content.content
+                | b64decode
+                | regex_findall('(?m)^extraargs=(.*)$')
+                | default([], true)
+                | first
+                | default('', true)
+              ).split()
+              + (armbian_overlays_extraargs | default([]))
+            ) | unique | join(' ')
+          }}
+        create: true
+        mode: "0644"
+      when: armbian_overlays_extraargs | default([]) | length > 0
+      notify: Mark reboot required

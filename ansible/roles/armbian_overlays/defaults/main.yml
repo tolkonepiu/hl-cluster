@@ -19,3 +19,6 @@ armbian_overlays_user_dir: "/boot/overlay-user"
 
 # Armbian environment file used by the bootloader
 armbian_overlays_env_file: "/boot/armbianEnv.txt"
+
+# Extra kernel arguments written to armbianEnv.txt (extraargs=…).
+armbian_overlays_extraargs: []

@@ -9,3 +9,9 @@ armbian_overlays_std_list:
 armbian_overlays_user_list:
   - name: rockpi-poe
     url: https://github.com/radxa/23w-poe/raw/refs/heads/master/dist/dtb/rockpi-poe.dtbo
+
+# Force filesystem checks on every boot and allow systemd-fsck/initramfs to
+# repair errors automatically before mounting the root filesystem.
+armbian_overlays_extraargs:
+  - fsck.mode=force
+  - fsck.repair=yes
