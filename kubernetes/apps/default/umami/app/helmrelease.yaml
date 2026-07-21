@@ -88,6 +88,7 @@ spec:
                 memory: 64Mi
               limits:
                 memory: 512Mi
+    defaultPodOptions:
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
