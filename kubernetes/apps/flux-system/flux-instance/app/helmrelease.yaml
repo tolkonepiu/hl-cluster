@@ -12,7 +12,7 @@ spec:
   values:
     instance:
       distribution:
-        artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.56.0@sha256:e0e0861bb589f374d56383016e1ec309b8789aa1a210a44d9d1df298f3827fa6
+        artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.57.0@sha256:1c5bc322bce48332556bec6ca29cdf32757e5892036d954d8cd36028b8ad4035
       cluster:
         networkPolicy: false
       components:
