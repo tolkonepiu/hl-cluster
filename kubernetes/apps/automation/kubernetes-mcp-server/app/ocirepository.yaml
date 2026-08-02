@@ -11,5 +11,5 @@ spec:
     operation: copy
   ref:
     tag: 0.1.0
-    digest: sha256:f4a02bcb89ce7d3e1a65fc7dbfa186f4a7cbf828cd193c2e663fef5588594665
+    digest: sha256:be79f55a60ab5fe5f52cfa480835d13f396fa84ca5058855bc9544cfa4921775
   url: oci://ghcr.io/containers/charts/kubernetes-mcp-server
