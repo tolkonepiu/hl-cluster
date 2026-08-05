@@ -5,7 +5,7 @@ metadata:
   name: agent
 spec:
   # renovate: datasource=github-releases depName=k3s-io/k3s
-  version: v1.36.2+k3s1
+  version: v1.36.3+k3s1
   serviceAccountName: system-upgrade-controller
   concurrency: 1
   cordon: true
@@ -13,7 +13,7 @@ spec:
     matchExpressions:
       - { key: node-role.kubernetes.io/control-plane, operator: DoesNotExist }
   prepare:
-    image: rancher/k3s-upgrade:v1.36.2-k3s1@sha256:471084010ecf1bc6e4b9544529400bf47c8da3d268e2f67fa239dacd735c0083
+    image: rancher/k3s-upgrade:v1.36.3-k3s1@sha256:50f09bc05b24c1911cd5cc6c9d8080c57123cfabcf5f48c1f1ed0e4e022efe25
     args: ["prepare", "server"]
   upgrade:
-    image: rancher/k3s-upgrade:v1.36.2-k3s1@sha256:471084010ecf1bc6e4b9544529400bf47c8da3d268e2f67fa239dacd735c0083
+    image: rancher/k3s-upgrade:v1.36.3-k3s1@sha256:50f09bc05b24c1911cd5cc6c9d8080c57123cfabcf5f48c1f1ed0e4e022efe25
