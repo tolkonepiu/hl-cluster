@@ -48,7 +48,7 @@ spec:
     - targets:
         - atlas-nl.rya-tone.ts.net:51821
         - atlas-ru.rya-tone.ts.net:51821
-        - atlas-lv.rya-tone.ts.net:51821
+        # - atlas-lv.rya-tone.ts.net:51821
   scrapeInterval: 30s
   metricsPath: /metrics/prometheus
   relabelings:
