@@ -106,20 +106,6 @@ spec:
           gnetId: 20842
           revision: 3
           datasource: Prometheus
-        wg-easy:
-          # renovate: depName="WireGuard wg-easy"
-          gnetId: 21733
-          revision: 1
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
-        traefik:
-          # renovate: depName="Traefik Official Standalone Dashboard"
-          gnetId: 17346
-          revision: 9
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
       kubernetes:
         kubernetes-api-server:
           # renovate: depName="Kubernetes / System / API Server"
