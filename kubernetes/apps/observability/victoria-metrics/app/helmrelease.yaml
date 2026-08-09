@@ -92,6 +92,20 @@ spec:
 
     kubeApiServer:
       enabled: true
+      vmScrape:
+        spec:
+          endpoints:
+            - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+              port: https
+              scheme: https
+              tlsConfig:
+                caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                serverName: kubernetes
+              metricRelabelConfigs:
+                - action: drop
+                  source_labels:
+                    - __name__
+                  regex: "etcd_request_duration_seconds_(bucket|sum|count)"
 
     prometheus-node-exporter:
       vmScrape:
@@ -201,6 +215,11 @@ spec:
         spec:
           # drop high cardinality label and useless metrics for cadvisor and kubelet
           metricRelabelConfigs:
+            # Drop etcd request-duration histograms exposed by control-plane nodes.
+            - action: drop
+              source_labels:
+                - __name__
+              regex: "etcd_request_duration_seconds_(bucket|sum|count)"
             # Drop less useful container CPU metrics.
             - sourceLabels: [__name__]
               action: drop
