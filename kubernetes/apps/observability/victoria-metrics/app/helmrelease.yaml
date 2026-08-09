@@ -40,8 +40,8 @@ spec:
       spec:
         retentionPeriod: "7d"
         extraArgs:
-          cacheExpireDuration: 10m
-          memory.allowedBytes: 768MiB
+          cacheExpireDuration: 5m
+          memory.allowedBytes: 640MiB
           prevCacheRemovalPercent: "0.2"
         storage:
           accessModes:
