@@ -47,11 +47,11 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1786393935,
-        "narHash": "sha256-2BkSKTW/8N+G/9ZIEsWGWkqqm2PjqfMjgwo+IhiElIw=",
+        "lastModified": 1787015266,
+        "narHash": "sha256-B4eXU1+QiZc3fFgH0pTl185xNUYNzW+1KIe9Jmtavkk=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "ddacdc79d07d28fb857d024299fb86f1e38eeb17",
+        "rev": "c18de5253016e6eb97689724327f08e9dd2d4768",
         "type": "github"
       },
       "original": {
@@ -80,11 +80,11 @@
     "flux-agent-skills": {
       "flake": false,
       "locked": {
-        "lastModified": 1785819507,
-        "narHash": "sha256-05i0KMZf6aMFCzjOkLFc7Pd3lsNqn4qcHIrO59MaCts=",
+        "lastModified": 1786432140,
+        "narHash": "sha256-OkJl9jPFpgdUz62ThohN1jad4hHEu45LeMEgAkMkqOw=",
         "owner": "fluxcd",
         "repo": "agent-skills",
-        "rev": "2f9e4f8203e1d35d6fe27015ca7df4705ff826fe",
+        "rev": "b49e531f18158797e80cd0201ef7753308b8931a",
         "type": "github"
       },
       "original": {
@@ -137,11 +137,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786098110,
-        "narHash": "sha256-shi1tjDhCGGd0kIgVPNY03V8NBWSTzhMSFDb7IqSoec=",
+        "lastModified": 1786963906,
+        "narHash": "sha256-3tkeMWSvHPo3tYljfXbPC/TgknikU1GvdVr/DkdfvE0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "afb4584a80bbf779ce0f691509ff902d188c2b3d",
+        "rev": "f4b6996c4e8b9ee06ce147ec344c885f51071b14",
         "type": "github"
       },
       "original": {
