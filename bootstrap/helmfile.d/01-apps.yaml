@@ -15,7 +15,7 @@ releases:
     namespace: kube-system
     atomic: true
     chart: kube-vip/kube-vip
-    version: 0.11.0
+    version: 0.11.1
     values: ["./templates/values.yaml.gotmpl"]
 
   - name: cilium
