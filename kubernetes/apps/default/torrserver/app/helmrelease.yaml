@@ -17,7 +17,7 @@ spec:
           app:
             image:
               repository: ghcr.io/yourok/torrserver
-              tag: MatriX.144@sha256:f725091666e35e34f4413a761ed7af72c8ab8624ffa3d3cbbb07cb7ccbd447a2
+              tag: MatriX.144.1@sha256:4bf54fbd0cc095cdca8d854f95afee4223072ab7fdf378d0da50e5bb86dd8e77
             env:
               HTTP_PORT: &port 8090
             probes:
